@@ -6,16 +6,13 @@ param azskBudgetAmount int = 150
 resource azskactiongroup 'Microsoft.Insights/actionGroups@2018-03-01' = {
   name: 'Mail to ${azskEmail}'
   location: 'Global'
-  resourceGroup: azskRgShared
   properties: {
     groupShortName: 'azskactiongroupmail'
     enabled: true
     emailReceivers: [
       {
         name: 'azskactiongroupmail'
-        emailAddress: azsk_email 
-        useCommonAlertSchema: true
-        status: 'Enabled'
+        emailAddress: azskEmail 
       }
     ]
 }
@@ -49,6 +46,5 @@ resource azskbudget 'Microsoft.Consumption/budgets@2019-10-01' = {
       }
     ]
   }
+ }
 }
-
-

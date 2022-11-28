@@ -24,8 +24,8 @@ module azskAlerts 'module/alerts.bicep' = {
   name: 'azskAlerts'
   params: {
     azskLocation: azskLocation
-    azsk_budget_amount: azskBudgetAmount
-    azsk_rg_shared: azskRgShared
-    azsk_email: azskEmailForAlert
+    azskBudgetAmount: azskBudgetAmount
+    azskRgShared: azskRgShared
+    azskEmail: azskEmailForAlert
   }
 }
