@@ -1,0 +1,44 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "azskLocation": {
+      "value": "westeurope"
+    },
+    "azskPrefix": {
+      "value": "azsk"
+    },
+    "azskTags":{
+      "value": {
+        "Owner": "Deployed_by",
+        "Environment": "Azure Starter Kit"
+      }
+    },
+    "aszkBudgetName":{
+      "value": "AzureStarterKitBudget"
+    },
+    "azskTimeGrain":{
+      "value": "Monthly"
+    },
+    "azskEmailsForAlert": {
+      "value": [
+        "niels.ophey@microsoft.com"
+      ]
+    },
+    "azskBudgetAmount": {
+      "value": 150
+    },
+    "azskBudgetStartDate": {
+      "value": "2022-12-01"
+    },
+    "azskBudgetEndDate": {
+      "value": "2025-12-01"
+    },
+    "azskBudgetFirstThreshold": {
+      "value": 80
+    },
+    "azskBudgetSecondThreshold": {
+      "value": 100
+    },
+  }
+}

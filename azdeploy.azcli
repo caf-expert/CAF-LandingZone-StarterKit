@@ -1,0 +1,13 @@
+# Login to Azure with your account
+az login
+
+# See the list of availible Subscriptions
+az account show --output table
+
+$subscriptionID = "your subscription ID"
+
+# Set the scope of the deplyoment
+az account set --subscription $subscriptionID
+
+# start the Azure Landing Zone Starter Kit deployment
+az deployment sub create --location "westeurope" --template-file "azskmain.bicep" --parameters "azskmain.parameters.json" --confirm-with-what-if
