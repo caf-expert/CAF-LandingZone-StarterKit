@@ -51,6 +51,7 @@ module azskRGs 'module/resourcegroup.bicep' = {
     azskTags: azskTags
     }
 }
+// TODO: Deploy the KeyVault, LogAnalytics and StorageAccount
 
 module azskAlerts 'module/alerts.bicep' = {
   name: 'azskBudgetAlerts'
