@@ -39,8 +39,6 @@ This repository offers a module to deploy the budget alert. The parameters for t
 |azskBudgetFirstThreshold|If this percentage threshold is reached the firt alert will be send out|80|
 |azskBudgetSecondThreshold|the second percentage threshold to fire the alert|100|
 
-All these parameters must be adjust to the need of each concrete implementation. You find all parameters in the file **azskmein.parameters.json** in the root folder of this repository.
-
 ##### Anomaly Alert
 
 In the Azure Cost management there is the option to setup a anomaly alert. With this setup, there will be a mail sended out as soon as Azure Cost Management detect a anomaly in the forecast of the cost. Multiple alerts can be setup in the portal. 
@@ -73,8 +71,43 @@ All policies will be collection into a initiative and this will be assigned to t
 
 ## How to deploy
 
-**TODO: Deployment discription....**
+To deploy this Starter Kit to a new or already existing subscription just follow these steps:
 
+1. Ensure to be loged into Azure
+
+```azurecli
+az login
+```
+
+2. Select the right Subscrition
+
+```azurecli
+az account show --output table
+```
+
+Check the output for the subscription which should be used and run the following comamnd to set your specific ID
+
+```azurecli
+$subscriptionID = "your subscription ID"
+``` 
+
+Set the account to use the susbcription
+
+```azurecli
+az account set --subscription $subscriptionID
+```
+
+3. Create a new deployment at Suscription level to deploy the Starter Kit
+```azurecli
+$location = "your preferred location"
+
+az deployment sub create --location "westeurope" --template-file "azskmain.bicep" --parameters "azskmain.parameters.json" --confirm-with-what-if
+
+```
+
+
+
+**TODO: Deployment discription....**
 
 ## Contributing ##
 
