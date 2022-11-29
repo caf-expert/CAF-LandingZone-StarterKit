@@ -33,6 +33,13 @@ This repository offers a module to deploy the budget alert. The parameters for t
 |---|---|---|
 |azskBudgetname|The user friendly name of the budget alert|'Azure StarterKit Budget'|
 |azskBudgetAmount|The budget value to test against. You define the amount of money you want to define, where the alert should react on. If you set it to 150 the alert will be notified as soon the Spend reaches the percentage of primary and secondary threshold|150|
+|azskEmailsForAlert|Emailadress to send the alert to|no default|
+|azskBudgetStartDate|The startdate to test the aktual cost against the budget limit.|'2022-12-01'|
+|azskBudgetEndDate|The enddate of this cost vs. budet test.|'2025-12-01|
+|azskBudgetFirstThreshold|If this percentage threshold is reached the firt alert will be send out|80|
+|azskBudgetSecondThreshold|the second percentage threshold to fire the alert|100|
+
+All these parameters must be adjust to the need of each concrete implementation. You find all parameters in the file **azskmein.parameters.json** in the root folder of this repository.
 
 ##### Anomaly Alert
 
@@ -44,21 +51,29 @@ We setup up some basic build-in Azure policies. this is the list of the policies
 ##### Identiy and Accessmanagement
 |Policy|Descitpion|Referenz|
 |---|---|---|
+|Subscription should have a contact Email address for security issues|To ensure the relevant people in your organization are notified when there is a potential security breach in one of your subscriptions, set a security contact to receive email notifications from Security Center.|[Definition](https://github.com/Azure/azure-policy/blob/master/built-in-policies/policyDefinitions/Azure%20Government/Security%20Center/ASC_Security_contact_email.json)|
+|A maximum of 3 owners should be designated for your subscription|It is recommended to designate up to 3 subscription owners in order to reduce the potential for breach by a compromised owner|[Definition](https://github.com/Azure/azure-policy/blob/master/built-in-policies/policyDefinitions/Azure%20Government/Security%20Center/ASC_DesignateLessThanXOwners_Audit.json)|
 
 ##### Network
 |Policy|Descitpion|Referenz|
 |---|---|---|
+|All network ports should be restricted on network security groups associated with your VMs|All network ports should be restricted on network security groups associated to your virtual machine|[Definition](https://github.com/Azure/azure-policy/blob/master/built-in-policies/policyDefinitions/Azure%20Government/Security%20Center/ASC_UnprotectedEndpoints_Audit.json)|
+|nternetfacing VMs should be protected with NSGs'|Protect your virtual machines from potential threats by restricting access to them with network security groups (NSG). Learn more about controlling traffic with NSGs at [https://aka.ms/nsg-doc](https://aka.ms/nsg-doc)|[Definition](https://github.com/Azure/azure-policy/blob/master/built-in-policies/policyDefinitions/Azure%20Government/Security%20Center/ASC_NetworkSecurityGroupsOnInternetFacingVirtualMachines_Audit.json)|
+|Subnets should be associated with a Network Security Group|Protect your subnet from potential threats by restricting access to it with a Network Security Group (NSG). NSGs contain a list of Access Control List (ACL) rules that allow or deny network traffic to your subnet.|[Definition](https://github.com/Azure/azure-policy/blob/master/built-in-policies/policyDefinitions/Azure%20Government/Security%20Center/ASC_NetworkSecurityGroupsOnSubnets_Audit.json)|
+|Network Watcher should be enabled|Network Watcher is a regional service that enables you to monitor and diagnose conditions at a network scenario level in, to, and from Azure. Scenario level monitoring enables you to diagnose problems at an end to end network level view. It is required to have a network watcher resource group to be created in every region where a virtual network is present. An alert is enabled if a network watcher resource group is not available in a particular region.|[Defintion](https://github.com/Azure/azure-policy/blob/master/built-in-policies/policyDefinitions/Network/NetworkWatcher_Enabled_Audit.json)|
 
 ##### Security
 |Policy|Descitpion|Referenz|
 |---|---|---|
-
+|System updates should be installed on your machines|Missing security system updates on your servers will be monitored by Azure Security Center as recommendations|[Definition](https://github.com/Azure/azure-policy/blob/master/built-in-policies/policyDefinitions/Azure%20Government/Security%20Center/ASC_MissingSystemUpdates_Audit.json)|
 
 All policies will be collection into a initiative and this will be assigned to the subscription in scope of the deployment. This gives the option to check how good the Azure resources are compliant to these policies in one view.
 
-**TODO - SCREENSHOT**
+![Azure Policy compliance view](/media/AuditReport.png)
 
-## Have in mind
+## How to deploy
+
+**TODO: Deployment discription....**
 
 
 ## Contributing ##

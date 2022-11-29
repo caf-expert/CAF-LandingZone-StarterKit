@@ -5,7 +5,7 @@ var azskPolicySetDisplayName = 'Azure Landing Zone Starter Kit - Baisc Governanc
 var azskPolicySetDescription = 'Assign the basic policies for Azure Landing Zone Starter Kit'
 
 // Get default policy IDs
-var defaultSecurityPolicyIds = json(loadTextContent('./policy-ids-libary/securitycenter.json'))
+var defaultSecurityPolicyIds = json(loadTextContent('./policy-ids-libary/starterkit.json'))
 
 // Policy initiative definition  
 
@@ -80,6 +80,18 @@ resource azskPolicySet 'Microsoft.Authorization/policySetDefinitions@2019-09-01'
       }
       {
         groupNames: [
+          'IAM'
+        ]
+        policyDefinitionReferenceId: 'A maximum of 3 owners should be designated for your subscription'
+        policyDefinitionId: defaultSecurityPolicyIds.AMaximumOf3OwnersShouldBeDesignatedForYourSubscription
+        parameters: {
+          effect: {
+            value: 'AuditIfNotExists'
+          }
+        }
+      }
+      {
+        groupNames: [
           'Network'
         ]
         policyDefinitionReferenceId: 'All network ports should be restricted on network security groups associated with your VMs'
@@ -114,9 +126,42 @@ resource azskPolicySet 'Microsoft.Authorization/policySetDefinitions@2019-09-01'
           }
         }
       }
+      {
+        groupNames: [
+          'Network'
+        ]
+        policyDefinitionReferenceId: 'Network Watcher should be enabled'
+        policyDefinitionId: defaultSecurityPolicyIds.NetworkWatcherShouldBeEnabled
+        parameters: {
+          effect: {
+            value: 'AuditIfNotExists'
+          }
+        }
+      }
+      {
+        groupNames: [
+          'Security'
+        ]
+        policyDefinitionReferenceId: 'System updates should be installed on your machines'
+        policyDefinitionId: defaultSecurityPolicyIds.SystemUpdatesShouldBeInstalledOnYourMachines
+        parameters: {
+          effect: {
+            value: 'AuditIfNotExists'
+          }
+        }
+      }
       //TODO: More Policies
     ]
   }
 }
 
-//TODO: Add the assigment
+// Assign policy set to subscription
+resource azskPolicyAssignment 'Microsoft.Authorization/policyassignments@2016-04-01' = {
+  name: '${azskPolicySetName}-assignment'
+  properties: {
+    displayName: azskPolicySetDisplayName
+    policyDefinitionId: azskPolicySet.id
+    scope: subscription().id
+
+  }
+}
