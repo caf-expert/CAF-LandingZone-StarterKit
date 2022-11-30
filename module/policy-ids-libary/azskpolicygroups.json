@@ -1,0 +1,22 @@
+[
+    {
+    "category": "Governance",
+    "name": "IAM",  
+    "displayname": "Identity and Access Management"
+    },
+    {
+    "category": "Governance",
+    "name": "Network",  
+    "displayname": "Network"
+    },
+    {
+    "category": "Governance",
+    "name": "Security",  
+    "displayname": "Security"
+    },
+    {
+    "category": "Governance",
+    "name": "Cost",  
+    "displayname": "Cost"
+    }
+]

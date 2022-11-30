@@ -1,0 +1,56 @@
+[
+    {
+        "policyGroup": "IAM",
+        "policyDefinitionReferenceId": "MFA should be enabled for accounts with write permissions on your subscription",
+        "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/9297c21d-2ed6-4474-b48f-163f75654ce3",
+        "effectvalue": "AuditIfNotExists"
+    },
+    {
+        "policyGroup": "IAM",
+        "policyDefinitionReferenceId": "MFA should be enabled on accounts with owner permissions on your subscription",
+        "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/aa633080-8b72-40c4-a2d7-d00c03e80bed",
+        "effectvalue": "AuditIfNotExists"
+    },
+    {
+        "policyGroup": "IAM",
+        "policyDefinitionReferenceId": "Subscription should have a contact Email address for security issues",
+        "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/4f4f78b8-e367-4b10-a341-d9a4ad5cf1c7",
+        "effectvalue": "AuditIfNotExists"
+    },
+    {
+        "policyGroup": "IAM",
+        "policyDefinitionReferenceId": "A maximum of 3 owners should be designated for your subscription",
+        "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/4f11b553-d42e-4e3a-89be-32ca364cad4c",
+        "effectvalue": "AuditIfNotExists"   
+    },
+    {
+        "policyGroup": "Network",
+        "policyDefinitionReferenceId": "All network ports should be restricted on network security groups associated with your VMs",
+        "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/9daedab3-fb2d-461e-b861-71790eead4f6",
+        "effectvalue": "AuditIfNotExists"   
+    },
+    {
+        "policyGroup": "Network",
+        "policyDefinitionReferenceId": "Internetfacing VMs should be protected with NSGs",
+        "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/f6de0be7-9a8a-4b8a-b349-43cf02d22f7c",
+        "effectvalue": "AuditIfNotExists"   
+    },
+    {
+        "policyGroup": "Network",
+        "policyDefinitionReferenceId": "Subnets should be associated with NSGs",
+        "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/e71308d3-144b-4262-b144-efdc3cc90517",
+        "effectvalue": "AuditIfNotExists"   
+    },
+    {
+        "policyGroup": "Network",
+        "policyDefinitionReferenceId": "Network Watcher should be enabled",
+        "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/b6e2945c-0b7b-40f5-9233-7a5323b5cdc6",
+        "effectvalue": "AuditIfNotExists"   
+    },
+    {
+        "policyGroup": "Security",
+        "policyDefinitionReferenceId": "System updates should be installed on your machines",
+        "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/c3f317a7-a95c-4547-b7e7-11017ebdf2fe",
+        "effectvalue": "AuditIfNotExists"   
+    }
+]
