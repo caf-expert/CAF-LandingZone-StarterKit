@@ -17,6 +17,9 @@ param aszkBudgetName string = 'AzureStarterKitBudget'
 @description('The list of email addresses to send the budget notification to when the threshold is exceeded.')
 param azskEmailsForAlert array
 
+@description('Theemail addresses to send the alert to out of the action group.')
+param azskActionGroupEmail string
+
 @description('The total amount of cost or usage to track with the budget')
 param azskBudgetAmount int
 
@@ -53,7 +56,16 @@ module azskRGs 'module/resourcegroup.bicep' = {
 }
 // TODO: Deploy the KeyVault, LogAnalytics and StorageAccount
 
-module azskAlerts 'module/alerts.bicep' = {
+module azskActionGroup 'module/actiongroup.bicep' = {
+  name: 'azskActionGroup'
+  scope: resourceGroup(azskRgShared)
+  params: {
+    azskActionGroupName: 'AzureStarterKitActionGroup'
+    azskActionGroupEmail: azskActionGroupEmail
+    }
+}
+
+module azskAlerts 'module/budgetalert.bicep' = {
   name: 'azskBudgetAlerts'
   params: {
     azskBudgetName: aszkBudgetName
@@ -64,6 +76,15 @@ module azskAlerts 'module/alerts.bicep' = {
     azskBudgetSecondThreshold: azskBudgetSecondThreshold
     azskEmails: azskEmailsForAlert
     azskTimeGrain: azskTimeGrain
+  }
+}
+
+module azskActivityLogAlert 'module/activitylogalerts.bicep' = {
+  scope : resourceGroup(azskRgShared)
+  name: '${azskprefix}ActivityLogAlert'
+  params: {
+   azskTags: azskTags
+   azskActionGroup: azskActionGroup.outputs.azsk_actionGroups_name_resource_id
   }
 }
 

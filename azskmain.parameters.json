@@ -40,5 +40,8 @@
     "azskBudgetSecondThreshold": {
       "value": 100
     },
+    "azskActionGroupEmail": {
+      "value": "niels.ophey@microsoft.com"
+    }
   }
 }
