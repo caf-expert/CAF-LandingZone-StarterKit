@@ -10,8 +10,7 @@
     },
     "azskTags":{
       "value": {
-        "Owner": "Deployed_by",
-        "Environment": "Azure Starter Kit"
+        "Deployed_by": "Azure Starter Kit"
       }
     },
     "aszkBudgetName":{
