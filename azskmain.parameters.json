@@ -21,7 +21,7 @@
     },
     "azskEmailsForAlert": {
       "value": [
-        "niels.ophey@microsoft.com"
+        "<yourmail@mail.com>"
       ]
     },
     "azskBudgetAmount": {
@@ -40,7 +40,7 @@
       "value": 100
     },
     "azskActionGroupEmail": {
-      "value": "niels.ophey@microsoft.com"
+      "value": "<yourmaily@mail.com>"
     }
   }
 }
