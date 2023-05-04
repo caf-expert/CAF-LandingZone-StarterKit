@@ -97,19 +97,30 @@ Set the account to use the susbcription
 az account set --subscription $subscriptionID
 ```
 
-3. Create a new deployment at Suscription level to deploy the Starter Kit
+3. Create a new deployment at Suscription level with the classic **.json parameter file** to deploy the Starter Kit
 ```azurecli
 $location = "your preferred location"
 
-az deployment sub create --location "westeurope" --template-file "azskmain.bicep" --parameters "azskmain.parameters.json" --confirm-with-what-if
+az deployment sub create --location $location --template-file "azskmain.bicep" --parameters "azskmain.parameters.json" --confirm-with-what-if
 
 ```
 
+4. Create a new deployment at Suscription level with the new **.bicepparam parameter file** to deploy the Starter Kit
 
+To do this, you need to create a new bicep file with the name azskmain.bicepparam to define the parameters for the deployment. To use this kind of files you need to have the following versions on your system:
 
-**TODO: Deployment discription....**
+- Azure CLI 2.48.1 or later (check with az --version)
+- Bicep version 0.16.2 or later (chekc with az bicep --version)
+- and you have to configure your bicepconfig.json (see repo for an example)
 
-## Contributing ##
+```azurecli
+$location = "your preferred location"
+
+az deployment sub create --location $location --template-file "azskmain.bicep" --parameters "azskmain.bicepparam" --confirm-with-what-if
+
+```
+
+## Contributing
 
 This project welcomes contributions and suggestions.  Most contributions require you to agree to a
 Contributor License Agreement (CLA) declaring that you have the right to, and actually do, grant us
