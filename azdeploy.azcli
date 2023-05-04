@@ -13,3 +13,13 @@ az account set --subscription $subscriptionID
 $location = "your preferred location"
 
 az deployment sub create --location $location --template-file "azskmain.bicep" --parameters "azskmain.parameters.json" --confirm-with-what-if
+
+# Deploy the Azure Landing Zone Starter Kit with the new bicepparam file...
+
+To do this, you need to create a new bicep file with the name azskmain.bicepparam to define the parameters for the deployment. To use this kind of files you need to have the following versions on your system:
+
+- Azure CLI 2.48.1 or later (check with az --version)
+- Bicep version 0.16.2 or later (chekc with az bicep --version)
+- and you have to configure your bicepconfig.json (see repo for an example)
+
+az deployment sub create --name "tryStarteKit" --location 'westeurope' --template-file "./azskmain.bicep" --parameters "azskmain.bicepparam" --confirm-with-what-if
