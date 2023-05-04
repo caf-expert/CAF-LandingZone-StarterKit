@@ -75,45 +75,47 @@ To deploy this Starter Kit to a new or already existing subscription just follow
 
 1. Ensure to be loged into Azure
 
-```azurecli
-az login
-```
+    ```azurecli
+    az login
+    ```
 
 2. Select the right Subscrition
 
-```azurecli
-az account show --output table
-```
+    ```azurecli
+    az account show --output table
+    ```
 
-Check the output for the subscription which should be used and run the following comamnd to set your specific ID
+    Check the output for the subscription which should be used and run the following comamnd to set your specific ID
 
-```azurecli
-$subscriptionID = "your subscription ID"
-``` 
+    ```azurecli
+    $subscriptionID = "your subscription ID"
+    ``` 
 
-Set the account to use the susbcription
+    Set the account to use the susbcription
 
-```azurecli
-az account set --subscription $subscriptionID
-```
+    ```azurecli
+    az account set --subscription $subscriptionID
+    ```
 
 3. In the next step you can choose between to option:
 
 - Create a new deployment at Suscription level with the classic **.json parameter file** to deploy the Starter Kit
+
     ```azurecli
     $location = "your preferred location"
     
     az deployment sub create --location $location --template-file "azskmain.bicep" --parameters "azskmain.parameters.json" --confirm-with-what-if
     
     ```
+
 - Create a new deployment at Suscription level with the new **.bicepparam parameter file** to deploy the Starter Kit
 
     To do this, you need to create a new bicep file with the name azskmain.bicepparam to define the parameters for the deployment. To use this kind of files you need to have the following versions on your system:
-    
-    - Azure CLI 2.48.1 or later (check with az --version)
-    - Bicep version 0.16.2 or later (chekc with az bicep --version)
-    - and you have to configure your bicepconfig.json (see repo for an example)
-    
+
+  - Azure CLI 2.48.1 or later (check with az --version)
+  - Bicep version 0.16.2 or later (chekc with az bicep --version)
+  - and you have to configure your bicepconfig.json (see repo for an example)
+
     ```azurecli
     $location = "your preferred location"
     
