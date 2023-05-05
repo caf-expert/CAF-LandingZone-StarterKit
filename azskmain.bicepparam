@@ -40,5 +40,15 @@ param azskBudgetSecondThreshold = 100
 // Define email address for the action group - Deployment alert
 param azskActionGroupEmail =  '<yourname>@mail.com' 
 
+// Define the eMail address for the anomaly alert
+ param azskAnomalyAlertEmail = '<yourmail>@mail.com'
 
+// Define the displayname of the anomaly alert
+param  azskAnomalyAlertDisplayName = 'Azure Starter Kit Anomaly Alert'
+
+// Define the name of the anomaly alert
+param azskAnomalyAlertName = 'AzureStarterKitAnomalyAlert'
+
+// Define the subject of the anomaly alert
+param azskAnomalyAlertEmailSubject = 'Azure Starter Kit Anomaly Alert detected'
 

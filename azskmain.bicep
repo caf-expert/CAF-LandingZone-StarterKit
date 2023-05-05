@@ -43,6 +43,17 @@ param azskBudgetFirstThreshold int = 80
 @description('Threshold value associated with a notification. Notification is sent when the cost exceeded the threshold. It is always percent and has to be between 0.01 and 1000.')
 param azskBudgetSecondThreshold int = 100
 
+@description('The email address to send the anomaly alert to out of the action group.')
+param azskAnomalyAlertEmail string 
+
+@description('The display name of the anomaly alert.')
+param azskAnomalyAlertDisplayName string = 'Azure Starter Kit Anomaly Alert'
+
+@description('The name of the anomaly alert.')
+param azskAnomalyAlertName string = '${azskprefix}AnomalyAlert'
+
+@description('The subject of the anomaly alert email.')
+param azskAnomalyAlertEmailSubject string = 'Azure Starter Kit - Anomaly Alert detected'
 
 var azskRgShared = 'rg-${azskprefix}-shared'
 
@@ -88,6 +99,15 @@ module azskActivityLogAlert 'module/activitylogalerts.bicep' = {
   }
 }
 
+module azskAnomalyAlert 'module/anomalyalert.bicep' = {
+  name: '${azskprefix}AnomlayAlert'
+  params: {
+    azskAnomalyAlertDisplayName: azskAnomalyAlertDisplayName
+    azskAnomalyAlertName: azskAnomalyAlertName
+    azskAnomalyAlertEmail: azskAnomalyAlertEmail
+    azskAnomalyAlertEmailSubject: azskAnomalyAlertEmailSubject
+  }
+}
 module azskPolicyInitiative 'module/policyinitiative.bicep' = {
   name: 'azskPolicyInitiative'
 }
