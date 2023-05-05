@@ -75,41 +75,55 @@ To deploy this Starter Kit to a new or already existing subscription just follow
 
 1. Ensure to be loged into Azure
 
-```azurecli
-az login
-```
+    ```azurecli
+    az login
+    ```
 
 2. Select the right Subscrition
 
-```azurecli
-az account show --output table
-```
+    ```azurecli
+    az account show --output table
+    ```
 
-Check the output for the subscription which should be used and run the following comamnd to set your specific ID
+    Check the output for the subscription which should be used and run the following comamnd to set your specific ID
 
-```azurecli
-$subscriptionID = "your subscription ID"
-``` 
+    ```azurecli
+    $subscriptionID = "your subscription ID"
+    ``` 
 
-Set the account to use the susbcription
+    Set the account to use the susbcription
 
-```azurecli
-az account set --subscription $subscriptionID
-```
+    ```azurecli
+    az account set --subscription $subscriptionID
+    ```
 
-3. Create a new deployment at Suscription level to deploy the Starter Kit
-```azurecli
-$location = "your preferred location"
+3. In the next step you can choose between to option:
 
-az deployment sub create --location "westeurope" --template-file "azskmain.bicep" --parameters "azskmain.parameters.json" --confirm-with-what-if
+- Create a new deployment at Suscription level with the classic **.json parameter file** to deploy the Starter Kit
 
-```
+    ```azurecli
+    $location = "your preferred location"
+    
+    az deployment sub create --location $location --template-file "azskmain.bicep" --parameters "azskmain.parameters.json" --confirm-with-what-if
+    
+    ```
 
+- Create a new deployment at Suscription level with the new **.bicepparam parameter file** to deploy the Starter Kit
 
+    To do this, you need to create a new bicep file with the name azskmain.bicepparam to define the parameters for the deployment. To use this kind of files you need to have the following versions on your system:
 
-**TODO: Deployment discription....**
+  - Azure CLI 2.48.1 or later (check with az --version)
+  - Bicep version 0.16.2 or later (chekc with az bicep --version)
+  - and you have to configure your bicepconfig.json (see repo for an example)
 
-## Contributing ##
+    ```azurecli
+    $location = "your preferred location"
+    
+    az deployment sub create --location $location --template-file "azskmain.bicep" --parameters "azskmain.bicepparam" --confirm-with-what-if
+
+    ```
+  
+## Contributing
 
 This project welcomes contributions and suggestions.  Most contributions require you to agree to a
 Contributor License Agreement (CLA) declaring that you have the right to, and actually do, grant us
