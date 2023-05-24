@@ -26,7 +26,7 @@ param azskEmailsForAlert =  [ '<yourname>@mail.com' ]
 param azskBudgetAmount = 100
 
 // Budget start date in format YYYY-MM-DD must be in future and the first day of the month
-param azskBudgetStartDate = '20233-05-01'
+param azskBudgetStartDate = '2023-05-01'
 
 // Set the budget end date in format YYYY-MM-DD must be in future 
 param azskBudgetEndDate = '2025-06-01'
