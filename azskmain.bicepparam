@@ -26,7 +26,7 @@ param azskEmailsForAlert =  [ '<yourname>@mail.com' ]
 param azskBudgetAmount = 100
 
 // Budget start date in format YYYY-MM-DD must be in future and the first day of the month
-param azskBudgetStartDate = '20233-05-01'
+param azskBudgetStartDate = '2023-05-01'
 
 // Set the budget end date in format YYYY-MM-DD must be in future 
 param azskBudgetEndDate = '2025-06-01'
@@ -40,5 +40,15 @@ param azskBudgetSecondThreshold = 100
 // Define email address for the action group - Deployment alert
 param azskActionGroupEmail =  '<yourname>@mail.com' 
 
+// Define the eMail address for the anomaly alert
+ param azskAnomalyAlertEmail = '<yourmail>@mail.com'
 
+// Define the displayname of the anomaly alert
+param  azskAnomalyAlertDisplayName = 'Azure Starter Kit Anomaly Alert'
+
+// Define the name of the anomaly alert
+param azskAnomalyAlertName = 'AzureStarterKitAnomalyAlert'
+
+// Define the subject of the anomaly alert
+param azskAnomalyAlertEmailSubject = 'Azure Starter Kit Anomaly Alert detected'
 

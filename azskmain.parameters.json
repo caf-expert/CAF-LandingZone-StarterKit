@@ -41,6 +41,18 @@
     },
     "azskActionGroupEmail": {
       "value": "<yourmaily@mail.com>"
+    },
+    "azskAnomalyAlertEmail": {
+      "value": "<yourmail>@mail.com"
+    },
+    "azskAnomalyAlertDisplayName":{
+      "value": "Azure Starter Kit Anomaly Alert"
+    },
+     "azskAnomalyAlertName": {
+      "value": "AzureStarterKitAnomalyAlert"
+    },
+     "azskAnomalyAlertEmailSubject": {
+      "value": "Azure Starter Kit Anomaly Alert detected"
     }
   }
 }
