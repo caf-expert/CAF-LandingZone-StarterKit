@@ -52,3 +52,6 @@ param azskAnomalyAlertName = 'AzureStarterKitAnomalyAlert'
 // Define the subject of the anomaly alert
 param azskAnomalyAlertEmailSubject = 'Azure Starter Kit Anomaly Alert detected'
 
+// Define true/false if a keyvault should be deployed
+param azskEnableKeyVault = false
+

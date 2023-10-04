@@ -55,21 +55,37 @@ param azskAnomalyAlertName string = '${azskprefix}AnomalyAlert'
 @description('The subject of the anomaly alert email.')
 param azskAnomalyAlertEmailSubject string = 'Azure Starter Kit - Anomaly Alert detected'
 
-var azskRgShared = 'rg-${azskprefix}-shared'
+@description('The list of the resource groups to be deployed.')
+param resourceGroups array = [
+  'shared'
+  'network'
+  'management'
+]
 
-module azskRGs 'module/resourcegroup.bicep' = {
-  name: 'azskRGs'
+@description('The resource group to be used for shared resources.')
+param azskRgShared string = 'rg-${azskprefix}-shared'
+
+@description('The resource group to be used for management resources.')
+param azskRgManagement string = 'rg-${azskprefix}-management'
+
+@description('Boolean to enable or disable the deployment of the Kay Vault.')
+param azskEnableKeyVault bool = false
+
+module azskRGs 'module/resourcegroup.bicep' = [for resourceGroup in resourceGroups :{
+  name: 'azskRG-${resourceGroup}'
   params: {
     azskLocation: azskLocation
-    azskRgName: azskRgShared
+    azskRgName: 'rg-${azskprefix}-${resourceGroup}'
     azskTags: azskTags
     }
-}
-// TODO: Deploy the KeyVault, LogAnalytics and StorageAccount
+}]
 
 module azskActionGroup 'module/actiongroup.bicep' = {
   name: 'azskActionGroup'
   scope: resourceGroup(azskRgShared)
+  dependsOn: [
+    azskRGs
+  ]
   params: {
     azskActionGroupName: 'AzureStarterKitActionGroup'
     azskActionGroupEmail: azskActionGroupEmail
@@ -78,6 +94,9 @@ module azskActionGroup 'module/actiongroup.bicep' = {
 
 module azskAlerts 'module/budgetalert.bicep' = {
   name: 'azskBudgetAlerts'
+  dependsOn: [
+    azskRGs
+  ]
   params: {
     azskBudgetName: aszkBudgetName
     azskBudgetAmount: azskBudgetAmount
@@ -93,6 +112,9 @@ module azskAlerts 'module/budgetalert.bicep' = {
 module azskActivityLogAlert 'module/activitylogalerts.bicep' = {
   scope : resourceGroup(azskRgShared)
   name: '${azskprefix}ActivityLogAlert'
+  dependsOn: [
+    azskRGs
+  ]
   params: {
    azskTags: azskTags
    azskActionGroup: azskActionGroup.outputs.azsk_actionGroups_name_resource_id
@@ -101,6 +123,9 @@ module azskActivityLogAlert 'module/activitylogalerts.bicep' = {
 
 module azskAnomalyAlert 'module/anomalyalert.bicep' = {
   name: '${azskprefix}AnomlayAlert'
+  dependsOn: [
+    azskRGs
+  ]
   params: {
     azskAnomalyAlertDisplayName: azskAnomalyAlertDisplayName
     azskAnomalyAlertName: azskAnomalyAlertName
@@ -110,4 +135,42 @@ module azskAnomalyAlert 'module/anomalyalert.bicep' = {
 }
 module azskPolicyInitiative 'module/policyinitiative.bicep' = {
   name: 'azskPolicyInitiative'
+}
+
+module azskLogAnalytics 'module/loganalytics.bicep' = {
+  name: 'azskLogAnalytics'
+  scope: resourceGroup(azskRgManagement)
+  dependsOn: [
+    azskRGs
+  ]
+  params: {
+    azskLogAnalyticsName: 'la-${azskprefix}-management'
+    azskLogAnalyticsLocation: azskLocation
+    azskTags: azskTags
+  }
+}
+
+module azskKeyVault 'module/keyvault.bicep' = if (azskEnableKeyVault == true) {
+  scope: resourceGroup(azskRgManagement)
+  name: 'azskKeyVault'
+  dependsOn: [
+    azskRGs
+  ]
+  params: {
+    azskKeyVaultName: 'kv-${azskprefix}-'
+    azskLocation: azskLocation
+  }
+}
+
+module azskStorageAcount 'module/storageaccount.bicep' = {
+  scope: resourceGroup(azskRgManagement)
+  name: 'azskStorageAccount'
+  dependsOn: [
+    azskRGs
+  ]
+  params: {
+    azskStorageAccountName: 'sa${azskprefix}'
+    azskLocation: azskLocation
+    azskTags: azskTags
+  }
 }

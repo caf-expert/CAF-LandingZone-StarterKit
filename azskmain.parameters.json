@@ -53,6 +53,9 @@
     },
      "azskAnomalyAlertEmailSubject": {
       "value": "Azure Starter Kit Anomaly Alert detected"
+    },
+    "azskEnableKeyVault":{
+      "value": true
     }
   }
 }
