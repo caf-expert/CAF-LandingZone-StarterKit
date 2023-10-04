@@ -122,7 +122,22 @@ To deploy this Starter Kit to a new or already existing subscription just follow
     az deployment sub create --location $location --template-file "azskmain.bicep" --parameters "azskmain.bicepparam" --confirm-with-what-if
 
     ```
-  
+
+## New option deployment stack
+
+There is a new capability in the Azure Resource Manager. It's called **deployment stack**. An Azure deployment stack is a type of Azure resource that enables the management of a group of Azure resources as an atomic unit. When a Bicep file or an ARM JSON template is submitted to a deployment stack, it defines the resources that are managed by the stack. If a resource that was previously included in the template is removed, it will either be detached or deleted based on the specified actionOnUnmanage behavior of the deployment stack. Similar to other Azure resources, access to the deployment stack can be restricted using Azure role-based access control (Azure RBAC).
+
+To deploy the whole StarterKit as a deployment stack in the Azure subcription use the following statement:
+
+```azurecli
+
+$location = "your preferred location"
+
+az stack sub create --location $location --name AzureStarterKitStack --template-file "azskmain.bicep" --parameters "azskmain.parameters.json" --deny-settings-mode none --delete-all true
+```
+
+If you want to learn more about deployment stack please visit the [documentation](https://learn.microsoft.com/azure/azure-resource-manager/bicep/deployment-stacks?tabs=azure-cli).
+
 ## Contributing
 
 This project welcomes contributions and suggestions.  Most contributions require you to agree to a
