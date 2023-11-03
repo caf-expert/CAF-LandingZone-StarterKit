@@ -1,14 +1,14 @@
 [
     {
         "policyGroup": "IAM",
-        "policyDefinitionReferenceId": "MFA should be enabled for accounts with write permissions on your subscription",
-        "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/9297c21d-2ed6-4474-b48f-163f75654ce3",
+        "policyDefinitionReferenceId": "Accounts with write permissions on Azure resources should be MFA enabled",
+        "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/931e118d-50a1-4457-a5e4-78550e086c52",
         "effectvalue": "AuditIfNotExists"
     },
     {
         "policyGroup": "IAM",
-        "policyDefinitionReferenceId": "MFA should be enabled on accounts with owner permissions on your subscription",
-        "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/aa633080-8b72-40c4-a2d7-d00c03e80bed",
+        "policyDefinitionReferenceId": "Accounts with owner permissions on Azure resources should be MFA enabled",
+        "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/e3e008c3-56b9-4133-8fd7-d3347377402a",
         "effectvalue": "AuditIfNotExists"
     },
     {
